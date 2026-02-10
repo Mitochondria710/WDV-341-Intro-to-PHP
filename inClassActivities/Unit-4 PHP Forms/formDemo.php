@@ -1,19 +1,22 @@
-<?php
-//$last_name = $_POST["first_name"];
-//$first_name = $_POST["last_name"];
-echo $_POST["class"] [0];
-echo $_POST["class"] [1];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Demo</title>
+    <style>
+        .hp-field-wrapper {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <form action="formDemo.php" method="post">
+    <?php
+        if(isset($_GET["message"])){
+            echo "<p>" . $_GET["message"] . "</p>";
+        }
+    ?>
+    <form action="formProcessor.php" method="post">
         <p>
             <label for="name">Name</label>
             <input type="text" name="first_name">
@@ -29,13 +32,16 @@ echo $_POST["class"] [1];
         <p>
             <div>Classes</div>
             <label for="adv_js">Advanced JavaScript</label>
-            <input type="checkbox" name="class[]" id="adv_js" value="advanced_js">
+            <input type="checkbox" name="classes[]" id="adv_js" value="advanced_js">
 
             <label for="intro_php">Intro PHP</label>
-            <input type="checkbox" name="class[]" id="intro_php" value="intro_php">
+            <input type="checkbox" name="classes[]" id="intro_php" value="intro_php">
         </p>
+        <div class="hp-field-wrapper"> 
+            <input type="hidden" id="honeypot" name="honeypot"> 
+        </div>
         <p>
-            <button type="submit">Save</button>
+            <button type="submit" name="submit">Save</button>
         </p>
         <!--<input type="submit" value="Save"> this works but is not as good due to lack of customization options-->
     </form>
